@@ -5,10 +5,21 @@ provider:
   runtime: nodejs16.13.2
   region: ap-southeast-1
   stage: dev
+  deploymentBucket: aws.deployment.test
 
 plugins:
 
 custom:
 
 resources:
+  Resources:
+    WebAppBucket:
+      Type: AWS::S3::Bucket
+      DeletionPolicy: Retain
+      Properties:
+        BucketName: aws.deployment.test2
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
 

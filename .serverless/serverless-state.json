@@ -1,0 +1,84 @@
+{
+  "service": {
+    "service": "frontend",
+    "serviceObject": {
+      "name": "frontend"
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs16.13.2",
+      "region": "ap-southeast-1",
+      "stage": "dev",
+      "deploymentBucket": "aws.deployment.test",
+      "versionFunctions": true,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "WebAppBucket": {
+            "Type": "AWS::S3::Bucket",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "BucketName": "aws.deployment.test2",
+              "AccessControl": "PublicRead",
+              "WebsiteConfiguration": {
+                "IndexDocument": "index.html",
+                "ErrorDocument": "index.html"
+              }
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": "aws.deployment.test",
+            "Export": {
+              "Name": "sls-frontend-dev-ServerlessDeploymentBucketName"
+            }
+          }
+        }
+      }
+    },
+    "custom": null,
+    "plugins": null,
+    "pluginsData": {},
+    "functions": {},
+    "resources": {
+      "Resources": {
+        "WebAppBucket": {
+          "Type": "AWS::S3::Bucket",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "BucketName": "aws.deployment.test2",
+            "AccessControl": "PublicRead",
+            "WebsiteConfiguration": {
+              "IndexDocument": "index.html",
+              "ErrorDocument": "index.html"
+            }
+          }
+        }
+      },
+      "Outputs": {}
+    },
+    "configValidationMode": "warn",
+    "serviceFilename": "serverless.yml",
+    "initialServerlessConfig": {
+      "service": {
+        "$ref": "$[\"service\"][\"serviceObject\"]"
+      },
+      "provider": {
+        "$ref": "$[\"service\"][\"provider\"]"
+      },
+      "resources": {
+        "$ref": "$[\"service\"][\"resources\"]"
+      },
+      "plugins": null,
+      "custom": null
+    },
+    "layers": {},
+    "isDashboardMonitoringPreconfigured": false
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/frontend/dev/1641979999707-2022-01-12T09:33:19.707Z",
+    "artifact": ""
+  }
+}
